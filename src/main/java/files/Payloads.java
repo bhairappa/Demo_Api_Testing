@@ -25,4 +25,13 @@ public class Payloads {
 				+ "}";
 	
 }
+	public static String updateplace(String placeId,String new_Address) {
+		// TODO Auto-generated method stub
+		return "{\r\n"
+	+ "    \"place_id\": \""+placeId+"\",\r\n"
+	+ "    \"address\": \""+new_Address+"\",\r\n"
+	+ "    \"key\":\"qaclick123\"\r\n"
+	+ "}\r\n"
+	+ "";
+	}
 }
