@@ -1,5 +1,5 @@
 package Demo_Apitesting;
-
+import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 
@@ -29,8 +29,7 @@ public class BasicApi {
 		     .body("scope", equalTo("APP"))
 		     .header("Server",equalTo("Apache/2.4.52 (Ubuntu)")).extract().response().asString();
 
-		System.out.println(response);
-		
+		System.out.println(response);	
 		JsonPath js  = new JsonPath(response);
 		String placeId  = js.get("place_id");
 		System.out.println(placeId);
