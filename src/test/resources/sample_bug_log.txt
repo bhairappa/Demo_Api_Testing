@@ -1,0 +1,5 @@
+[2026-11-25 12:30:14] ERROR [TestNG-Test-1] AdminPage - Dropdown options failed to populate under User Role filter.
+Expected: List of roles [Admin, ESS]
+Actual: Empty dropdown container (<div class="oxd-select-dropdown" /> rendered with 0 child nodes)
+HTTP Status: 500 Internal Server Error on GET /web/index.php/api/v2/admin/roles
+Environment: QA-Staging | Browser: Chrome 131.0 | Build: v4.8.2-rc1
