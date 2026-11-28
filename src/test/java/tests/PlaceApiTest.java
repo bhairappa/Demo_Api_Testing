@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 
 import base.SpecBuilder;
 import payloads.Payloads;
+import payloads.TestDataBuilder;
+import pojos.place.AddPlaceRequest;
 import utilities.ReusableMethods;
 
 public class PlaceApiTest {
@@ -59,4 +61,26 @@ public class PlaceApiTest {
         String actualAddress = ReusableMethods.rawToJson(response).getString("address");
         Assert.assertEquals(actualAddress, newAddress);
     }
+    @Test(priority = 4)
+    public void addPlaceWithPojoTest() {
+        AddPlaceRequest payload = TestDataBuilder.buildAddPlacePayload(
+                "Greenline Villa",
+                "English-IN",
+                "42, MG Road, Bengaluru"
+        );
+
+        String response = given()
+                .spec(SpecBuilder.getPlaceRequestSpec())
+                .body(payload)
+        .when()
+                .post("/maps/api/place/add/json")
+        .then()
+                .spec(SpecBuilder.getSuccessResponseSpec(200))
+                .body("scope", equalTo("APP"))
+                .extract().asString();
+
+        String serializedPlaceId = ReusableMethods.rawToJson(response).getString("place_id");
+        Assert.assertNotNull(serializedPlaceId, "place_id from POJO payload should not be null");
+    }
+
 }
